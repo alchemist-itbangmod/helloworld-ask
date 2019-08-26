@@ -20,9 +20,14 @@
     "react-dom": "^16.9.0",
     "react-scripts": "3.0.1",
     "react-test-renderer": "^16.9.0",
+<<<<<<< HEAD
+    "rebass": "^4.0.5",
+    "styled-components": "^4.3.2"
+=======
     "rebass": "^4.0.2",
     "styled-components": "^4.3.2",
     "styled-system": "^5.1.1"
+>>>>>>> 6da041a6f208dcbe32802b674caf1e68abdcf04a
   },
   "devDependencies": {
     "@storybook/react": "^5.1.11",
