@@ -21,7 +21,8 @@
     "react-scripts": "3.0.1",
     "react-test-renderer": "^16.9.0",
     "rebass": "^4.0.2",
-    "styled-components": "^4.3.2"
+    "styled-components": "^4.3.2",
+    "styled-system": "^5.1.1"
   },
   "devDependencies": {
     "@storybook/react": "^5.1.11",
