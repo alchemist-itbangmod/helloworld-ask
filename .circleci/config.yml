@@ -1,0 +1,33 @@
+version: 2
+jobs:
+  build:
+    branches:
+      only:
+        - ask4.0
+    docker:
+      - image: circleci/node:9.9.0
+    working_dir: ./frontend
+    steps:
+      - setup_remote_docker 
+      - checkout
+      - run:
+          name: build docker
+          command: |
+              cd frontend
+              docker build -t kaotu/devask:v1 .
+              docker login -u="$DOCKER_USER" -p="$DOCKER_PASSWORD"
+              docker push kaotu/devask:v1
+
+      - add_ssh_keys:
+          fingerprints:
+            - "60:9d:fa:65:a1:c6:3d:29:87:c0:ae:48:0e:34:5c:42"
+      
+      - run: ssh-keyscan $IP_HOST >> ~/.ssh/known_hosts
+
+      - run:
+          name: ssh & deploy
+          command: |
+              scp ./frontend/docker-compose.yml $USERNAME_SERVER@$IP_HOST:/home/$USERNAME_SERVER/docker-compose.yml
+              ssh $USERNAME_SERVER@$IP_HOST 'docker-compose pull'
+              ssh $USERNAME_SERVER@$IP_HOST 'docker-compose up -d'
+                 
